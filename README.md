@@ -73,9 +73,9 @@ de Unsplash. Ver [`.env.local.example`](./.env.local.example).
 flowchart LR
     A[Login] --> B[Dashboard]
     B --> C[Nuevo itinerario]
-    C --> D[Formulario<br/>datos esenciales]
+    C --> D["Formulario · datos esenciales"]
     D --> E[Generar con IA]
-    E --> F[Editor<br/>autosave]
+    E --> F["Editor · autosave"]
     F --> G[Generar PDF]
     G --> H[Descargar]
 ```
@@ -84,14 +84,14 @@ flowchart LR
 
 ```mermaid
 flowchart TD
-    UI[Next.js App Router<br/>Server + Client Components]
+    UI["Next.js App Router — Server + Client Components"]
     SA[Server Actions]
     UI --> SA
-    SA --> DB[(Supabase<br/>PostgreSQL + RLS)]
-    SA --> AI[OpenRouter / Gemini<br/>JSON validado con Zod]
-    SA --> IMG[Unsplash API<br/>búsqueda + atribución]
-    SA --> PDF[react-pdf<br/>portada · membrete · numeración]
-    AUTH[Supabase Auth] -.protege rutas.-> UI
+    SA --> DB[("Supabase — PostgreSQL + RLS")]
+    SA --> AI["OpenRouter / Gemini — JSON validado con Zod"]
+    SA --> IMG["Unsplash API — busqueda + atribucion"]
+    SA --> PDF["react-pdf — portada, membrete, numeracion"]
+    AUTH["Supabase Auth"] -.protege rutas.-> UI
 ```
 
 ## Estructura
