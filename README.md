@@ -1,5 +1,12 @@
 # Travel Itinerary & Proposal Generator
 
+![Next.js](https://img.shields.io/badge/Next.js_16-000000?style=flat&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React_19-20232A?style=flat&logo=react&logoColor=61DAFB)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_4-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+
 Aplicación web interna que permite a los agentes de una agencia de viajes crear
 **itinerarios y propuestas comerciales profesionales en minutos**: el agente captura
 solo los datos esenciales del viaje (pasajero, destino, fechas, lugares por día) y
@@ -62,9 +69,29 @@ de Unsplash. Ver [`.env.local.example`](./.env.local.example).
 
 ## Flujo principal
 
+```mermaid
+flowchart LR
+    A[Login] --> B[Dashboard]
+    B --> C[Nuevo itinerario]
+    C --> D[Formulario<br/>datos esenciales]
+    D --> E[Generar con IA]
+    E --> F[Editor<br/>autosave]
+    F --> G[Generar PDF]
+    G --> H[Descargar]
 ```
-Login → Dashboard → Nuevo itinerario → Formulario → Generar con IA
-      → Editor (autosave) → Generar PDF → Descargar
+
+## Arquitectura (alto nivel)
+
+```mermaid
+flowchart TD
+    UI[Next.js App Router<br/>Server + Client Components]
+    SA[Server Actions]
+    UI --> SA
+    SA --> DB[(Supabase<br/>PostgreSQL + RLS)]
+    SA --> AI[OpenRouter / Gemini<br/>JSON validado con Zod]
+    SA --> IMG[Unsplash API<br/>búsqueda + atribución]
+    SA --> PDF[react-pdf<br/>portada · membrete · numeración]
+    AUTH[Supabase Auth] -.protege rutas.-> UI
 ```
 
 ## Estructura
